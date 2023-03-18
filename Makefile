@@ -1,36 +1,32 @@
-SRCS =	
+SRCS	=	main.c			\
+			push_swap.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-NAME = libftprintf.a
+NAME	=	push_swap
 
-CC = gcc
+CC		=	gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra
 
-all : $(NAME)
+all:	$(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I ./libft
 
-$(NAME) : $(OBJS)
+$(NAME):	$(OBJS)
 	@make -C ./libft
-	@cp ./libft/libft.a $(NAME)
-	@ar rcs $(NAME) $(OBJS)
-	@echo "$(NAME) created"
-	@ranlib $(NAME)
-	@echo "$(NAME) indexed"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a
 
-clean :
+clean:
 	@cd libft && make clean
 	@$(RM) $(OBJS)
 
-fclean :
+fclean: clean
 	@cd libft && make fclean
-	@$(RM) $(OBJS)
 	@$(RM) $(NAME)
 	@echo "$(NAME) deleted"
 
-re : fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
