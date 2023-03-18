@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:13:22 by agarijo-          #+#    #+#             */
-/*   Updated: 2022/11/03 19:42:12 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:46:50 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
+
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
 
 typedef struct s_list
 {
@@ -85,6 +93,9 @@ char			*ft_strnstr(const char *hay, const char *needle, size_t len);
 // convert ASCII string to integer. Max number is 64-bit signed integer.
 // returns the integer.
 int				ft_atoi(const char *str);
+// convert ASCII string to integer. Max number INT_MAX = 2147483647.
+// returns the integer.
+int				ft_atoi_ps(const char *str, int *flag);
 // allocates enough space for 'count' objects that are 'size' bytes of
 // memory each and returns a pointer.
 void			*ft_calloc(size_t count, size_t size);
