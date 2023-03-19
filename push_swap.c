@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/18 21:00:25 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:44:45 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	check_arguments(int argc, char *argv[])
 	while (counter < argc && status != 0)
 	{
 		status = check_argument_format(argv[counter]);
-		printf("Status: %d\n", status);
 		if (!status)
 			return (free(array_arguments), 0);
 		array_arguments[counter - 1] = ft_atoi_ps(argv[counter], &status);
@@ -36,6 +35,9 @@ int	check_arguments(int argc, char *argv[])
 			return (free(array_arguments), 0);
 		counter++;
 	}
+	if (check_argument_duplicate(array_arguments))
+		return (printf("Duplicado\n"), free(array_arguments), 0);
+	printf("Todo ok.\n");
 	free(array_arguments);
 	return (1);
 }
@@ -57,6 +59,24 @@ int	check_argument_format(char *argument)
 		counter++;
 	}
 	return (1);
+}
+
+int	check_argument_duplicate(int *array_arguments)
+{
+	int	position;
+	int	counter;
+
+	position = 0;
+	counter = position + 1;
+	while (array_arguments[position])
+	{
+		while (array_arguments[counter])
+			if (array_arguments[position] == array_arguments[counter++])
+				return (1);
+		position++;
+		counter = position + 1;
+	}
+	return (0);
 }
 
 void	push_swap(void)

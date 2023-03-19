@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:38:41 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/18 21:33:01 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:07:06 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ static	int	ft_sign_and_spaces(const char *str, int *p_counter)
 
 int	ft_atoi_ps(const char *str, int *flag)
 {
-	int		sign;
-	int		number;
-	int		counter;
+	int				sign;
+	unsigned int	number;
+	int				counter;
 
 	number = 0;
 	sign = ft_sign_and_spaces(str, &counter);
 	while (str[counter] != '\0' && str[counter] >= 48 && str[counter] <= 57)
 	{
-		if (number >= INT_MAX && sign == 1)
+		number = number * 10 + (str[counter] - '0');
+		if (number > INT_MAX && sign == 1)
 			return (*flag = 0, -1);
 		if (number > INT_MAX && sign == -1)
 			return (*flag = 0, 0);
-		number = number * 10 + (str[counter] - '0');
 		counter ++;
 	}
 	number = number * sign;
