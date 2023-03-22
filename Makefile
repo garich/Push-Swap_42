@@ -1,5 +1,7 @@
 SRCS	=	main.c			\
-			push_swap.c
+			push_swap.c		\
+			list_utils.c	\
+			list_utils_more.c
 
 OBJS	=	$(SRCS:.c=.o)
 

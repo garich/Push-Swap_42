@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/19 16:44:45 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:54:48 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // While ends if STATUS equals 0. 
 // STATUS equals 0 only if check_argument_format fails to comply.
-int	check_arguments(int argc, char *argv[])
+int	*check_arguments(int argc, char *argv[])
 {
 	int	counter;
 	int	status;
@@ -29,17 +29,16 @@ int	check_arguments(int argc, char *argv[])
 	{
 		status = check_argument_format(argv[counter]);
 		if (!status)
-			return (free(array_arguments), 0);
+			return (free(array_arguments), NULL);
 		array_arguments[counter - 1] = ft_atoi_ps(argv[counter], &status);
 		if (!status)
-			return (free(array_arguments), 0);
+			return (free(array_arguments), NULL);
 		counter++;
 	}
 	if (check_argument_duplicate(array_arguments))
-		return (printf("Duplicado\n"), free(array_arguments), 0);
+		return (printf("Duplicado\n"), free(array_arguments), NULL);
 	printf("Todo ok.\n");
-	free(array_arguments);
-	return (1);
+	return (array_arguments);
 }
 
 int	check_argument_format(char *argument)
