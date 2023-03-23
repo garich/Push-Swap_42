@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:22:12 by agarijo-          #+#    #+#             */
-/*   Updated: 2022/11/03 19:06:17 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:29:42 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,42 @@ static char	*ft_ins_word(const char *s, int word_counter)
 	return (word);
 }
 
-static char	**ft_fill_result_array(char **result_array, const char *s, char c)
+void	free_memory(char **result_array)
+{
+	int	counter;
+
+	counter = 0;
+	while (result_array[counter] != NULL)
+	{
+		free(result_array[counter]);
+		result_array[counter] = NULL;
+		counter ++;
+	}
+}
+
+char	**ft_split(const char *s, char c)
 {
 	int		counter;
 	int		flag;
 	int		result_array_counter;
+	char	**result_array;
+	char	*word;
 
 	counter = 0;
 	flag = 0;
 	result_array_counter = 0;
+	word = NULL;
+	result_array = malloc((ft_count_words_s(s, c) + 1) * sizeof(char *));
+	if (!result_array)
+		return (NULL);
 	while (*(s + counter))
 	{
 		if (*(s + counter) != c && flag != 1)
 		{
-			*(result_array + result_array_counter) = ft_ins_word((s + counter),
-					ft_size_word((s + counter), c));
+			word = ft_ins_word((s + counter), ft_size_word((s + counter), c));
+			if (!word)
+				return (free_memory(result_array), NULL);
+			*(result_array + result_array_counter) = word;
 			result_array_counter++;
 			flag = 1;
 		}
@@ -90,16 +111,5 @@ static char	**ft_fill_result_array(char **result_array, const char *s, char c)
 		counter++;
 	}
 	*(result_array + result_array_counter) = NULL;
-	return (result_array);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**result_array;
-
-	result_array = malloc((ft_count_words_s(s, c) + 1) * sizeof(char *));
-	if (!result_array)
-		return (NULL);
-	result_array = ft_fill_result_array(result_array, s, c);
 	return (result_array);
 }
