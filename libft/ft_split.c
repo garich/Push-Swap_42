@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:22:12 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/23 19:29:42 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:26:29 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,44 +72,40 @@ void	free_memory(char **result_array)
 	int	counter;
 
 	counter = 0;
-	while (result_array[counter] != NULL)
+	while (result_array[counter])
 	{
 		free(result_array[counter]);
 		result_array[counter] = NULL;
 		counter ++;
 	}
+	free(result_array);
 }
 
 char	**ft_split(const char *s, char c)
 {
-	int		counter;
+	int		cr;
 	int		flag;
-	int		result_array_counter;
-	char	**result_array;
-	char	*word;
+	int		r_a_c;
+	char	**r_a;
 
-	counter = 0;
+	cr = 0;
 	flag = 0;
-	result_array_counter = 0;
-	word = NULL;
-	result_array = malloc((ft_count_words_s(s, c) + 1) * sizeof(char *));
-	if (!result_array)
+	r_a_c = 0;
+	r_a = ft_calloc((ft_count_words_s(s, c) + 1), sizeof(char *));
+	if (!r_a)
 		return (NULL);
-	while (*(s + counter))
+	while (*(s + cr))
 	{
-		if (*(s + counter) != c && flag != 1)
+		if (*(s + cr) != c && flag != 1)
 		{
-			word = ft_ins_word((s + counter), ft_size_word((s + counter), c));
-			if (!word)
-				return (free_memory(result_array), NULL);
-			*(result_array + result_array_counter) = word;
-			result_array_counter++;
+			*(r_a + r_a_c) = ft_ins_word((s + cr), ft_size_word((s + cr), c));
+			if (!*(r_a + r_a_c++))
+				return (free_memory(r_a), NULL);
 			flag = 1;
 		}
-		else if (*(s + counter) == c)
+		else if (*(s + cr) == c)
 			flag = 0;
-		counter++;
+		cr++;
 	}
-	*(result_array + result_array_counter) = NULL;
-	return (result_array);
+	return (*(r_a + r_a_c) = NULL, r_a);
 }

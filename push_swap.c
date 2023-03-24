@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/22 14:54:48 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:33:36 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	*check_arguments(int argc, char *argv[])
 	int	status;
 	int	*array_arguments;
 
-	counter = 1;
+	counter = 0;
 	status = -1;
-	array_arguments = ft_calloc((argc - 1), sizeof(int));
+	array_arguments = ft_calloc((argc), sizeof(int));
 	if (!array_arguments)
 		return (0);
 	while (counter < argc && status != 0)
@@ -30,15 +30,14 @@ int	*check_arguments(int argc, char *argv[])
 		status = check_argument_format(argv[counter]);
 		if (!status)
 			return (free(array_arguments), NULL);
-		array_arguments[counter - 1] = ft_atoi_ps(argv[counter], &status);
+		array_arguments[counter] = ft_atoi_ps(argv[counter], &status);
 		if (!status)
 			return (free(array_arguments), NULL);
 		counter++;
 	}
 	if (check_argument_duplicate(array_arguments))
 		return (printf("Duplicado\n"), free(array_arguments), NULL);
-	printf("Todo ok.\n");
-	return (array_arguments);
+	return (printf("Todo ok.\n"), array_arguments);
 }
 
 int	check_argument_format(char *argument)
@@ -48,6 +47,8 @@ int	check_argument_format(char *argument)
 
 	arg_length = ft_strlen(argument);
 	counter = 0;
+	if (arg_length == 0)
+		return (0);
 	if (argument[counter] == '+'
 		|| argument[counter] == '-')
 		counter++;
