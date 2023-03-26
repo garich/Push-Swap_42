@@ -6,11 +6,36 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:25:56 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/22 17:08:30 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/27 00:04:27 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	lst_add_next_to_node(t_node *node, t_node *next)
+{
+	if (node)
+		node->next = next;
+}
+
+t_node	*fill_list_with_array(int *array, int argc)
+{
+	int		counter;
+	t_node	*node;
+	t_node	*head;
+
+	node = NULL;
+	head = NULL;
+	counter = 0;
+	while (counter < argc)
+	{
+		node = lst_new_node();
+		lst_add_value_to_node(node, array[counter]);
+		lst_add_back(&head, node);
+		counter++;
+	}
+	return (head);
+}
 
 void	lst_print(t_node *lst)
 {

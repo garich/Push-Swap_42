@@ -1,7 +1,9 @@
-SRCS	=	main.c			\
-			push_swap.c		\
-			list_utils.c	\
-			list_utils_more.c
+SRCS	=	main.c				\
+			arguments.c			\
+			push_swap.c			\
+			list_utils.c		\
+			list_utils_more.c	\
+			array_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 

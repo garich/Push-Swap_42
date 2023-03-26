@@ -5,80 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/24 19:33:36 by agarijo-         ###   ########.fr       */
+/*   Created: 2023/03/26 22:19:20 by agarijo-          #+#    #+#             */
+/*   Updated: 2023/03/27 00:13:19 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// While ends if STATUS equals 0. 
-// STATUS equals 0 only if check_argument_format fails to comply.
-int	*check_arguments(int argc, char *argv[])
+t_node	*swap_a_sa(t_node *head)
 {
-	int	counter;
-	int	status;
-	int	*array_arguments;
+	t_node	*node;
+	t_node	*temp;
 
-	counter = 0;
-	status = -1;
-	array_arguments = ft_calloc((argc), sizeof(int));
-	if (!array_arguments)
-		return (0);
-	while (counter < argc && status != 0)
+	node = lst_new_node();
+	if (node)
 	{
-		status = check_argument_format(argv[counter]);
-		if (!status)
-			return (free(array_arguments), NULL);
-		array_arguments[counter] = ft_atoi_ps(argv[counter], &status);
-		if (!status)
-			return (free(array_arguments), NULL);
-		counter++;
+		temp = head->next;
+		lst_add_value_to_node(node, (head->next)->value);
+		lst_add_next_to_node(node, head);
+		lst_add_next_to_node(head, (head->next)->next);
+		lst_free_node(temp);
+		return (node);
 	}
-	if (check_argument_duplicate(array_arguments))
-		return (printf("Duplicado\n"), free(array_arguments), NULL);
-	return (printf("Todo ok.\n"), array_arguments);
+	return (NULL);
 }
 
-int	check_argument_format(char *argument)
+t_node	*only_two_numbers(t_node *head)
 {
-	int	arg_length;
-	int	counter;
+	t_node	*node;
 
-	arg_length = ft_strlen(argument);
-	counter = 0;
-	if (arg_length == 0)
-		return (0);
-	if (argument[counter] == '+'
-		|| argument[counter] == '-')
-		counter++;
-	while (counter < arg_length)
+	node = NULL;
+	if (head->value < head->next->value)
+		return (write(1, "OK\n", 3), head);
+	else
 	{
-		if (!ft_isdigit(argument[counter]))
-			return (0);
-		counter++;
+		node = swap_a_sa(head);
+		if (node)
+			return (write(1, "sa\n", 3), node);
+		return (write(2, "Error\n", 6), NULL);
 	}
-	return (1);
 }
 
-int	check_argument_duplicate(int *array_arguments)
+void	push_swap(int *array, int argc)
 {
-	int	position;
-	int	counter;
+	t_node	*head;
 
-	position = 0;
-	counter = position + 1;
-	while (array_arguments[position])
+	head = NULL;
+	if (argc == 1)
+		write(1, "OK\n", 3);
+	else
 	{
-		while (array_arguments[counter])
-			if (array_arguments[position] == array_arguments[counter++])
-				return (1);
-		position++;
-		counter = position + 1;
+		head = fill_list_with_array(array, argc);
+		lst_print(head);
+		if (argc == 2)
+			head = only_two_numbers(head);
+		lst_print(head);
+		lst_clear(&head);
 	}
-	return (0);
-}
-
-void	push_swap(void)
-{
+	free(array);
 }
