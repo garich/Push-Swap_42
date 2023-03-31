@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:12:57 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/30 20:23:51 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:23:32 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,18 @@ t_node	*reverse_rotate_a_rra(t_node *head)
 	new_last->next = NULL;
 	new_head->next = node;
 	return (write(1, "rra\n", 4), new_head);
+}
+
+void	push_b_pb(t_node **head_a, t_node **head_b)
+{
+	t_node	*node;
+
+	if (head_a)
+	{
+		node = *head_b;
+		*head_b = *head_a;
+		*head_a = (*head_a)->next;
+		(*head_b)->next = node;
+		write(1, "pb\n", 4);
+	}
 }

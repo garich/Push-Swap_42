@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:19:20 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/30 20:24:54 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:29:46 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,28 @@ t_node	*only_three_numbers(t_node *head)
 	return (write(2, "Error\n", 6), NULL);
 }
 
+t_node	*only_five_numbers(t_node *head)
+{
+	t_node	*head_b;
+
+	head_b = NULL;
+	push_b_pb(&head, &head_b);
+	write(2, "#STACK A:\n", 10);
+	lst_print(head);
+	write(2, "#STACK B:\n", 10);
+	lst_print(head_b);
+	push_b_pb(&head, &head_b);
+	write(2, "#STACK A:\n", 10);
+	lst_print(head);
+	write(2, "#STACK B:\n", 10);
+	lst_print(head_b);
+	head = only_three_numbers(head);
+	lst_clear(&head_b);
+	if (head)
+		return (head);
+	return (write(2, "Error\n", 6), NULL);
+}
+
 void	push_swap(int *array, int argc)
 {
 	t_node	*head;
@@ -77,6 +99,8 @@ void	push_swap(int *array, int argc)
 				head = only_two_numbers(head);
 			if (argc == 3)
 				head = only_three_numbers(head);
+			if (argc == 5)
+				head = only_five_numbers(head);
 		}
 		lst_print(head);
 		lst_clear(&head);
