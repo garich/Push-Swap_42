@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:26:23 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/22 16:27:28 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:43:14 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ t_node	*lst_new_node(void)
 	return (new_node);
 }
 
-void	lst_add_value_to_node(t_node *node, int add_value)
-{
-	if (node)
-		node->value = add_value;
-}
-
 void	lst_add_back(t_node **lst, t_node *new)
 {
 	if (!*lst)
@@ -37,6 +31,21 @@ void	lst_add_back(t_node **lst, t_node *new)
 	{
 		lst_last(*lst)->next = new;
 	}
+}
+
+t_node	*lst_second_to_last(t_node *lst)
+{
+	t_node	*second_to_last;
+
+	second_to_last = NULL;
+	while (lst)
+	{
+		if (!(lst->next))
+			return (second_to_last);
+		second_to_last = lst;
+		lst = lst->next;
+	}
+	return (second_to_last);
 }
 
 t_node	*lst_last(t_node *lst)

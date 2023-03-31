@@ -3,7 +3,8 @@ SRCS	=	main.c				\
 			push_swap.c			\
 			list_utils.c		\
 			list_utils_more.c	\
-			array_utils.c
+			array_utils.c		\
+			ps_rules.c
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:02:11 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/26 22:59:02 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:33:32 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	main(int argc, char **argv)
 		if (argc)
 		{
 			argv = args;
-			// print_array(argv);
-			// printf("*** Num:%d\n", argc);
 			array_arguments = check_arguments(argc, argv);
 		}
 	}
