@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:12:57 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/31 22:12:19 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:22:09 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	push_b_pb(t_node **head_a, t_node **head_b)
 		*head_b = *head_a;
 		(*head_b)->next = node_b;
 		*head_a = node_a;
-		write(1, "pb\n", 4);
+		write(1, "pb\n", 3);
 	}
 }
 
@@ -90,6 +90,6 @@ void	push_a_pa(t_node **head_a, t_node **head_b)
 		*head_a = *head_b;
 		(*head_a)->next = node_a;
 		*head_b = node_b;
-		write(1, "pa\n", 4);
+		write(1, "pa\n", 3);
 	}
 }

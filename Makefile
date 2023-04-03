@@ -35,4 +35,22 @@ fclean: clean
 
 re: fclean all
 
+py2: all
+	python3 pythonvisualizer.py `ruby -e "puts (-1..0).to_a.shuffle.join(' ')"`
+
+py3: all
+	python3 pythonvisualizer.py `ruby -e "puts (-1..1).to_a.shuffle.join(' ')"`
+
+py5: all
+	python3 pythonvisualizer.py `ruby -e "puts (-2..2).to_a.shuffle.join(' ')"`
+
+py100: all
+	python3 pythonvisualizer.py `ruby -e "puts (-50..50).to_a.shuffle.join(' ')"`
+
+py200: all
+	python3 pythonvisualizer.py `ruby -e "puts (-100..100).to_a.shuffle.join(' ')"`
+
+py500: all
+	python3 pythonvisualizer.py `ruby -e "puts (-250..250).to_a.shuffle.join(' ')"`
+
 .PHONY: all clean fclean re
