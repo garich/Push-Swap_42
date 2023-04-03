@@ -4,7 +4,8 @@ SRCS	=	main.c				\
 			list_utils.c		\
 			list_utils_more.c	\
 			array_utils.c		\
-			ps_rules.c
+			ps_rules.c			\
+			push_swap_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 

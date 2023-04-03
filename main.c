@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:02:11 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/31 11:59:17 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:34:32 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ int	main(int argc, char **argv)
 		if (args)
 			free_malloc(args);
 	}
-	atexit(leaks);
+	// atexit(leaks);
 }

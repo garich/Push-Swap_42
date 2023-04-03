@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:47:48 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/31 13:29:00 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:15:56 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		check_argument_duplicate(int *array_arguments, int size);
 int		check_if_in_order(t_node *head);
 t_node	*only_two_numbers(t_node *head);
 t_node	*only_three_numbers(t_node *head);
+t_node	*only_four_numbers(t_node *head);
 t_node	*only_five_numbers(t_node *head);
 void	push_swap(int *array, int argc);
 
@@ -70,9 +71,15 @@ void	free_malloc(char **result_array);
 // 		Last element becomes the first one.
 // 'push_b_pb' Take the first element at the top of Stack A
 //		and put it at the top of Stack B.
+// 'push_a_pa' Take the first element at the top of Stack B
+//		and put it at the top of Stack A.
 t_node	*swap_a_sa(t_node *head);
 t_node	*rotate_a_ra(t_node *head);
 t_node	*reverse_rotate_a_rra(t_node *head);
 void	push_b_pb(t_node **head_a, t_node **head_b);
+void	push_a_pa(t_node **head_a, t_node **head_b);
+
+// 'push_swap_utils.c' FILE functions declarations.
+int		smallest_position(t_node *head);
 
 #endif

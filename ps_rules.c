@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:12:57 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/31 13:23:32 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:12:19 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,32 @@ t_node	*reverse_rotate_a_rra(t_node *head)
 
 void	push_b_pb(t_node **head_a, t_node **head_b)
 {
-	t_node	*node;
+	t_node	*node_a;
+	t_node	*node_b;
 
 	if (head_a)
 	{
-		node = *head_b;
+		node_a = (*head_a)->next;
+		node_b = *head_b;
 		*head_b = *head_a;
-		*head_a = (*head_a)->next;
-		(*head_b)->next = node;
+		(*head_b)->next = node_b;
+		*head_a = node_a;
 		write(1, "pb\n", 4);
+	}
+}
+
+void	push_a_pa(t_node **head_a, t_node **head_b)
+{
+	t_node	*node_a;
+	t_node	*node_b;
+
+	if (head_a)
+	{
+		node_a = *head_a;
+		node_b = (*head_b)->next;
+		*head_a = *head_b;
+		(*head_a)->next = node_a;
+		*head_b = node_b;
+		write(1, "pa\n", 4);
 	}
 }
