@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:19:20 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/05 12:16:37 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:25:37 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	check_if_in_order(t_node *head)
 	return (1);
 }
 
-// Sin lo comentado son <25 líneas
 void	push_swap(int *array, int argc)
 {
 	t_node	*head;
@@ -35,9 +34,6 @@ void	push_swap(int *array, int argc)
 	else
 	{
 		head = fill_list_with_array(array, argc);
-		write(2, "-> INPUT:\n", 10);
-		lst_print(head);
-		write(2, "<-\n", 3);
 		if (check_if_in_order(head))
 			write(1, "ORDEN\n", 6);
 		else
@@ -48,11 +44,9 @@ void	push_swap(int *array, int argc)
 				head = only_three_numbers(head);
 			if (argc == 4)
 				head = only_four_numbers(head);
-			if (argc > 4)
+			else
 				head = more_numbers(head);
 		}
-		// write(2, "##STACK A:\n", 11);
-		// lst_print(head);
 		lst_clear(&head);
 	}
 	free(array);

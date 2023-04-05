@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:33:05 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/02 19:34:15 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:27:39 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	*get_chunks(int head_size)
+{
+	int	*chunks;
+
+	chunks = NULL;
+	if (head_size < 100)
+	{
+		chunks = ft_calloc((3), sizeof(int));
+		if (!chunks)
+			return (NULL);
+		chunks[0] = head_size / 3;
+		chunks[1] = (head_size / 3) * 2 + 1;
+		chunks[2] = head_size;
+		printf("Chunk: %d\n", chunks[0]);
+		printf("Chunk: %d\n", chunks[1]);
+		printf("Chunk: %d\n", chunks[2]);
+	}
+	return (chunks);
+}
 
 int	smallest_position(t_node *head)
 {

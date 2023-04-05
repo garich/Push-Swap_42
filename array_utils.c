@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 21:59:36 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/05 12:37:43 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:09:59 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	count_array(char **array)
 	return (counter);
 }
 
-void	free_malloc(char **result_array)
+void	free_malloc(void **result_array)
 {
 	int	counter;
 

@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 21:51:33 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/03 22:15:10 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:41:37 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_node	*lst_new_node(void)
 		return (NULL);
 	new_node->next = NULL;
 	new_node->rank = -1;
+	new_node->og_position = -1;
 	return (new_node);
 }
 

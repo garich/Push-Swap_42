@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_swap.c                                        :+:      :+:    :+:   */
+/*   ps_algorithms.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 21:48:00 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/03 21:48:27 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:05:20 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,45 +75,51 @@ t_node	*only_four_numbers(t_node *head)
 
 t_node	*more_numbers(t_node *head)
 {
-	int		smallest_place;
 	int		head_size;
-	int		half_size;
+	int		*chunks;
 	t_node	*head_b;
 
 	head_b = NULL;
-	smallest_place = smallest_position(head);
 	head_size = lst_size(head);
-	half_size = (head_size / 2) + (head_size % 2);
-	// printf("Head Size:%d\n", head_size);
-	// printf("Middle:%d\n", half_size);
-	// printf("Smallest Place:%d\n", smallest_place);
+	printf("Head Size: %d\n", head_size);
+	chunks = get_chunks(head_size - 1);
 	while (head && !(check_if_in_order(head)))
 	{
 		if (head_size == 3)
 			head = only_three_numbers(head);
 		else
-		{	
-			if (smallest_place < half_size)
-			{
-				while (smallest_place--)
-					head = rotate_a_ra(head);
-				push_b_pb(&head, &head_b);
-			}
-			else if (smallest_place >= half_size)
-			{
-				while (smallest_place++ < head_size)
-					head = reverse_rotate_a_rra(head);
-				push_b_pb(&head, &head_b);
-			}
-			smallest_place = smallest_position(head);
-			head_size = lst_size(head);
-			half_size = (head_size / 2) + (head_size % 2);
-		}
+			separate_chunks(&head, &head_b, &chunks, &head_size);
 	}
-	while (head_b)
-		push_a_pa(&head, &head_b);
+	write(1, "A:\n", 3);
+	lst_print(head);
+	write(1, "B:\n", 3);
+	lst_print(head_b);
+	free(chunks);
 	lst_clear(&head_b);
 	if (head)
 		return (head);
 	return (write(2, "Error\n", 6), NULL);
+}
+
+void	separate_chunks(t_node **head_a,
+	t_node **head_b, int **chunks, int *head_size)
+{
+	while (*head_size > chunks[0][0])
+	{
+		if ((*head_a)->rank <= chunks[0][0])
+		{
+			push_b_pb(head_a, head_b);
+			*head_b = rotate_b_rb(*head_b);
+			*head_size -= 1;
+		}
+		else if ((*head_a)->rank <= chunks[0][1])
+		{
+			push_b_pb(head_a, head_b);
+			*head_size -= 1;
+		}
+		else
+		{
+			*head_a = rotate_a_ra(*head_a);
+		}
+	}
 }
