@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:47:48 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/02 19:15:56 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:27:44 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,29 @@
 typedef struct ListNode
 {
 	int					value;
+	int					og_position;
+	int					rank;
 	struct ListNode		*next;
 }	t_node;
 
 // 'main.c' FILE functions declarations.
 void	leaks(void);
 
-// 'list_utils_more.c' FILE functions declarations.
+// 'list_node.c' FILE functions declarations.
+t_node	*lst_new_node(void);
 void	lst_add_value_to_node(t_node *node, int add_value);
+void	lst_add_og_pos_to_node(t_node *node, int add_og_pos);
+void	lst_add_rank_to_node(t_node *node, int add_rank);
 void	lst_add_next_to_node(t_node *node, t_node *next);
+
+
+// 'list_utils_more.c' FILE functions declarations.
 t_node	*fill_list_with_array(int *array, int argc);
 void	lst_print(t_node *lst);
 void	lst_clear(t_node **lst);
 void	lst_free_node(t_node *node);
 
 // 'list_utils.c' FILE functions declarations.
-t_node	*lst_new_node(void);
 void	lst_add_back(t_node **lst, t_node *new);
 t_node	*lst_second_to_last(t_node *lst);
 t_node	*lst_last(t_node *lst);
@@ -51,13 +58,16 @@ int		check_argument_duplicate(int *array_arguments, int size);
 
 // 'push_swap.c' FILE functions declarations.
 int		check_if_in_order(t_node *head);
+void	push_swap(int *array, int argc);
+
+// 'algo_swap.c' FILE functions declarations.
 t_node	*only_two_numbers(t_node *head);
 t_node	*only_three_numbers(t_node *head);
 t_node	*only_four_numbers(t_node *head);
-t_node	*only_five_numbers(t_node *head);
-void	push_swap(int *array, int argc);
+t_node	*more_numbers(t_node *head);
 
 // 'array_utils.c' FILE functions declarations.
+int		*get_array_weight(int *array, int argc);
 void	print_array(char **array);
 int		count_array(char **array);
 void	free_malloc(char **result_array);

@@ -6,22 +6,11 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:26:23 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/30 13:43:14 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:53:02 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_node	*lst_new_node(void)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->next = NULL;
-	return (new_node);
-}
 
 void	lst_add_back(t_node **lst, t_node *new)
 {

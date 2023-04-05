@@ -6,48 +6,41 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:25:56 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/30 13:55:50 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:38:51 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	lst_add_value_to_node(t_node *node, int add_value)
-{
-	if (node)
-		node->value = add_value;
-}
-
-void	lst_add_next_to_node(t_node *node, t_node *next)
-{
-	if (node)
-		node->next = next;
-}
 
 t_node	*fill_list_with_array(int *array, int argc)
 {
 	int		counter;
 	t_node	*node;
 	t_node	*head;
+	int		*weights;
 
 	node = NULL;
 	head = NULL;
 	counter = 0;
+	weights = get_array_weight(array, argc);
 	while (counter < argc)
 	{
 		node = lst_new_node();
 		lst_add_value_to_node(node, array[counter]);
+		lst_add_og_pos_to_node(node, counter);
+		lst_add_rank_to_node(node, weights[counter]);
 		lst_add_back(&head, node);
 		counter++;
 	}
-	return (head);
+	return (free (weights), head);
 }
 
 void	lst_print(t_node *lst)
 {
 	while (lst)
 	{
-		printf("%d\n", lst->value);
+		printf("VALUE\tOG.POS\tRANK\n");
+		printf("%d\t%d\t%d\n", lst->value, lst->og_position, lst->rank);
 		lst = lst->next;
 	}
 }
