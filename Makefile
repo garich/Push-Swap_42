@@ -6,8 +6,11 @@ SRCS	=	main.c				\
 			array_utils.c		\
 			push_swap.c			\
 			ps_rules.c			\
+			ps_rules_more.c		\
 			ps_utils.c			\
-			ps_algorithms.c
+			ps_utils_more.c		\
+			ps_algorithms.c		\
+			ps_algorithms_more.c
 
 OBJS	=	$(SRCS:.c=.o)
 

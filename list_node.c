@@ -6,24 +6,11 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 21:51:33 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/05 18:41:37 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:18:31 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_node	*lst_new_node(void)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->next = NULL;
-	new_node->rank = -1;
-	new_node->og_position = -1;
-	return (new_node);
-}
 
 void	lst_add_value_to_node(t_node *node, int add_value)
 {
@@ -31,10 +18,16 @@ void	lst_add_value_to_node(t_node *node, int add_value)
 		node->value = add_value;
 }
 
-void	lst_add_og_pos_to_node(t_node *node, int add_og_pos)
+void	lst_add_pos_to_node(t_node *node, int add_pos)
 {
 	if (node)
-		node->og_position = add_og_pos;
+		node->position = add_pos;
+}
+
+void	lst_add_targ_pos_to_node(t_node *node, int add_targ_pos)
+{
+	if (node)
+		node->targ_position = add_targ_pos;
 }
 
 void	lst_add_rank_to_node(t_node *node, int add_rank)

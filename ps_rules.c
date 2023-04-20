@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:12:57 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/05 18:34:28 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:43:52 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_node	*swap_a_sa(t_node *head)
 	{
 		temp = head->next;
 		lst_add_value_to_node(node, (head->next)->value);
-		lst_add_og_pos_to_node(node, (head->next)->og_position);
+		lst_add_pos_to_node(node, (head->next)->position);
 		lst_add_rank_to_node(node, (head->next)->rank);
 		lst_add_next_to_node(node, head);
 		lst_add_next_to_node(head, (head->next)->next);
@@ -32,88 +32,66 @@ t_node	*swap_a_sa(t_node *head)
 	return (NULL);
 }
 
-t_node	*rotate_a_ra(t_node *head)
+void	rotate_a_ra(t_node **head, int a_cost)
 {
 	t_node	*node;
 	t_node	*new_head;
 
+	(void)a_cost;
 	node = lst_new_node();
-	if (node)
-	{
-		new_head = head->next;
-		lst_add_value_to_node(node, head->value);
-		lst_add_og_pos_to_node(node, head->og_position);
-		lst_add_rank_to_node(node, head->rank);
-		lst_add_next_to_node(node, NULL);
-		lst_add_back(&new_head, node);
-		lst_free_node(head);
-		return (write(1, "ra\n", 3), new_head);
-	}
-	return (NULL);
+	new_head = (*head)->next;
+	lst_add_value_to_node(node, (*head)->value);
+	lst_add_pos_to_node(node, (*head)->position);
+	lst_add_rank_to_node(node, (*head)->rank);
+	lst_add_next_to_node(node, NULL);
+	lst_add_back(&new_head, node);
+	lst_free_node(*head);
+	*head = new_head;
+	write(1, "ra\n", 3);
 }
 
-t_node	*rotate_b_rb(t_node *head)
+void	rotate_b_rb(t_node **head, int b_cost)
 {
 	t_node	*node;
 	t_node	*new_head;
 
+	(void)b_cost;
 	node = lst_new_node();
-	if (node)
-	{
-		new_head = head->next;
-		lst_add_value_to_node(node, head->value);
-		lst_add_og_pos_to_node(node, head->og_position);
-		lst_add_rank_to_node(node, head->rank);
-		lst_add_next_to_node(node, NULL);
-		lst_add_back(&new_head, node);
-		lst_free_node(head);
-		return (write(1, "rb\n", 3), new_head);
-	}
-	return (NULL);
+	new_head = (*head)->next;
+	lst_add_value_to_node(node, (*head)->value);
+	lst_add_pos_to_node(node, (*head)->position);
+	lst_add_rank_to_node(node, (*head)->rank);
+	lst_add_next_to_node(node, NULL);
+	lst_add_back(&new_head, node);
+	lst_free_node(*head);
+	*head = new_head;
+	write(1, "rb\n", 3);
 }
 
-t_node	*reverse_rotate_a_rra(t_node *head)
+void	rotate_a_b_rr(t_node **head_a, t_node **head_b, int a_cost, int b_cost)
 {
 	t_node	*node;
 	t_node	*new_head;
-	t_node	*new_last;
 
-	node = head;
-	new_last = lst_second_to_last(head);
-	new_head = lst_last(head);
-	new_last->next = NULL;
-	new_head->next = node;
-	return (write(1, "rra\n", 4), new_head);
-}
-
-void	push_b_pb(t_node **head_a, t_node **head_b)
-{
-	t_node	*node_a;
-	t_node	*node_b;
-
-	if (head_a)
-	{
-		node_a = (*head_a)->next;
-		node_b = *head_b;
-		*head_b = *head_a;
-		(*head_b)->next = node_b;
-		*head_a = node_a;
-		write(1, "pb\n", 3);
-	}
-}
-
-void	push_a_pa(t_node **head_a, t_node **head_b)
-{
-	t_node	*node_a;
-	t_node	*node_b;
-
-	if (head_a)
-	{
-		node_a = *head_a;
-		node_b = (*head_b)->next;
-		*head_a = *head_b;
-		(*head_a)->next = node_a;
-		*head_b = node_b;
-		write(1, "pa\n", 3);
-	}
+	(void)a_cost;
+	(void)b_cost;
+	node = lst_new_node();
+	new_head = (*head_a)->next;
+	lst_add_value_to_node(node, (*head_a)->value);
+	lst_add_pos_to_node(node, (*head_a)->position);
+	lst_add_rank_to_node(node, (*head_a)->rank);
+	lst_add_next_to_node(node, NULL);
+	lst_add_back(&new_head, node);
+	lst_free_node(*head_a);
+	*head_a = new_head;
+	node = lst_new_node();
+	new_head = (*head_b)->next;
+	lst_add_value_to_node(node, (*head_b)->value);
+	lst_add_pos_to_node(node, (*head_b)->position);
+	lst_add_rank_to_node(node, (*head_b)->rank);
+	lst_add_next_to_node(node, NULL);
+	lst_add_back(&new_head, node);
+	lst_free_node(*head_b);
+	*head_b = new_head;
+	write(1, "rr\n", 3);
 }

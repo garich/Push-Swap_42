@@ -6,11 +6,34 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/30 20:32:50 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:19:16 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	*manage_array(int *argc, char ***args, char **argv)
+{
+	int	*array_arguments;
+
+	array_arguments = NULL;
+	if (*argc == 2)
+	{
+		*args = split_arguments(argv[1]);
+		*argc = count_array(*args);
+		if (argc)
+		{
+			argv = *args;
+			array_arguments = check_arguments(*argc, argv);
+		}
+	}
+	else
+	{
+		*argc = *argc - 1;
+		array_arguments = check_arguments(*argc, (argv + 1));
+	}
+	return (array_arguments);
+}
 
 char	**split_arguments(char *argv)
 {
@@ -60,6 +83,8 @@ int	check_argument_format(char *argument)
 	if (argument[counter] == '+'
 		|| argument[counter] == '-')
 		counter++;
+	if (counter == arg_length)
+		return (0);
 	while (counter < arg_length)
 	{
 		if (!ft_isdigit(argument[counter]))

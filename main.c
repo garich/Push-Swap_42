@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:02:11 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/05 17:13:07 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:12:03 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,9 @@ int	main(int argc, char **argv)
 	array_arguments = NULL;
 	args = NULL;
 	if (argc == 1)
-		exit(1);
-	else if (argc == 2)
-	{
-		args = split_arguments(argv[1]);
-		argc = count_array(args);
-		if (argc)
-		{
-			argv = args;
-			array_arguments = check_arguments(argc, argv);
-		}
-	}
+		exit(0);
 	else
-	{
-		argc = argc - 1;
-		array_arguments = check_arguments(argc, (argv + 1));
-	}
+		array_arguments = manage_array(&argc, &args, argv);
 	if (!array_arguments)
 	{	
 		if (args)
