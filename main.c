@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:02:11 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/19 17:12:03 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:11:03 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	else
 		array_arguments = manage_array(&argc, &args, argv);
 	if (!array_arguments)
-	{	
+	{
 		if (args)
 			free_malloc((void *)args);
 		write(2, "Error\n", 6);
@@ -40,5 +40,5 @@ int	main(int argc, char **argv)
 		if (args)
 			free_malloc((void *)args);
 	}
-	atexit(leaks);
+	// atexit(leaks);
 }

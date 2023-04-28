@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:38:41 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/19 16:07:06 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:50:49 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_atoi_ps(const char *str, int *flag)
 		number = number * 10 + (str[counter] - '0');
 		if (number > INT_MAX && sign == 1)
 			return (*flag = 0, -1);
-		if (number > INT_MAX && sign == -1)
+		if (number > INT_MIN && sign == -1)
 			return (*flag = 0, 0);
 		counter ++;
 	}

@@ -14,7 +14,15 @@ SRCS	=	main.c				\
 
 OBJS	=	$(SRCS:.c=.o)
 
+# BONUS_SRCS = checker.c		\
+# 			 checker_utils.c	\
+# 			 checker_rules.c
+
+# BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
 NAME	=	push_swap
+
+# B_NAME	=	checker
 
 CC		=	gcc
 
@@ -28,6 +36,10 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	@make -C ./libft
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a
+
+# bonus: $(BONUS_OBJS)
+# 	@make -C ./libft
+# 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(B_NAME) libft/libft.a
 
 clean:
 	@cd libft && make clean

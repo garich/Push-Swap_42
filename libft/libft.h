@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:13:22 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/03/19 16:04:02 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:51:10 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 # ifndef INT_MAX
 #  define INT_MAX 2147483647
+# endif
+
+# ifndef INT_MIN
+#  define INT_MIN 2147483648
 # endif
 
 typedef struct s_list
