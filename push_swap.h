@@ -6,17 +6,13 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:47:48 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:51:02 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:14:18 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// stdlib para exit.
-// stdio para printf.
-# include <stdlib.h>
-# include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct ListNode
@@ -27,9 +23,6 @@ typedef struct ListNode
 	int					rank;
 	struct ListNode		*next;
 }	t_node;
-
-// 'main.c' FILE functions declarations.
-void	leaks(void);
 
 // 'list_node.c' FILE functions declarations.
 void	lst_add_value_to_node(t_node *node, int add_value);

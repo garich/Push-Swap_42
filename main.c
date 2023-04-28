@@ -6,16 +6,11 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:02:11 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/28 16:11:03 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:14:10 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	leaks(void)
-{
-	system("leaks -q --list push_swap");
-}
 
 int	main(int argc, char **argv)
 {
@@ -40,5 +35,4 @@ int	main(int argc, char **argv)
 		if (args)
 			free_malloc((void *)args);
 	}
-	// atexit(leaks);
 }

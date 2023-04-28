@@ -6,7 +6,7 @@
 /*   By: agarijo- <agarijo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:33:21 by agarijo-          #+#    #+#             */
-/*   Updated: 2023/04/19 17:19:16 by agarijo-         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:09:30 by agarijo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	*manage_array(int *argc, char ***args, char **argv)
 	array_arguments = NULL;
 	if (*argc == 2)
 	{
+		if (ft_strlen(argv[1]) == 0)
+			return (array_arguments);
 		*args = split_arguments(argv[1]);
 		*argc = count_array(*args);
 		if (argc)
